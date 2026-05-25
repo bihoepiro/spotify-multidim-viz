@@ -4,9 +4,6 @@ App web para explorar 100 años de música popular usando técnicas de visualiza
 multidimensional sobre el dataset público de Spotify (Kaggle, 170 653 canciones,
 1921-2020).
 
-Tres tareas analíticas con su operación formal y su par de visualizaciones,
-coordinadas por interacción cruzada (hover/brush/click) sobre un mismo store
-reactivo.
 
 ---
 
