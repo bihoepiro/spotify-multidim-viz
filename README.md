@@ -26,8 +26,6 @@ multidimensional sobre el dataset público de Spotify (Kaggle, 170 653 canciones
 | Frontend | HTML + CSS + JavaScript ES2020 (modular) |
 | Visualizaciones | D3.js v7 (sin bundler, cargado por CDN) |
 
-Sin React, sin Vue, sin frameworks JS. Cada vista es un módulo ESM que se carga
-directamente en el navegador.
 
 ---
 
