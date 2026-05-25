@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spotify · Análisis multidimensional</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-mode="home">
+
+<header class="hero" data-show="home">
+  <h1>Spotify <em>·</em> 100 años en 9 dimensiones</h1>
+  <p class="hero-lead">
+    1500 canciones (1920-2020), 9 atributos de audio, tres preguntas.
+  </p>
+
+  <div class="tasks">
+
+    <button class="task" data-task="t1">
+      <div class="task-tag">Tarea 1</div>
+      <h3>Identificar tendencias temporales en los atributos de audio</h3>
+      <ul class="task-spec">
+        <li><b>Operación</b> · correlacionar la década con cada feature</li>
+        <li><b>Variables</b> · 9 features cuantitativas vs <code>decade</code> ordinal</li>
+      </ul>
+      <div class="task-finding" id="answer-t1">…</div>
+    </button>
+
+    <button class="task" data-task="t2">
+      <div class="task-tag">Tarea 2</div>
+      <h3>Comparar el perfil sonoro de canciones populares vs no populares</h3>
+      <ul class="task-spec">
+        <li><b>Operación</b> · comparar grupos (Low &lt; 30 vs High ≥ 70)</li>
+        <li><b>Variables</b> · 9 features cuantitativas, <code>popularity_tier</code> categórica</li>
+      </ul>
+      <div class="task-finding" id="answer-t2">…</div>
+    </button>
+
+    <button class="task" data-task="t3">
+      <div class="task-tag">Tarea 3</div>
+      <h3>Detectar y caracterizar arquetipos sonoros mediante clustering</h3>
+      <ul class="task-spec">
+        <li><b>Operación</b> · agrupar (KMeans, k=4) + perfilar centroides</li>
+        <li><b>Variables</b> · 9 features normalizadas, <code>archetype_cluster</code> derivada</li>
+      </ul>
+      <div class="task-finding" id="answer-t3">…</div>
+    </button>
+
+  </div>
+</header>
+
+{% if not has_data %}
+<div class="banner">
+  Aún no hay datos procesados. Ejecuta <code>python preprocess.py</code> en la raíz.
+</div>
+{% endif %}
+
+<div class="task-shell" data-show="task">
+
+  <div class="task-bar">
+    <button class="back-btn" id="back-btn">← Atrás</button>
+    <span class="task-bar-num" id="bar-num"></span>
+    <span class="task-bar-title" id="bar-title"></span>
+    <span class="task-bar-finding" id="bar-finding"></span>
+    <div id="legend" class="legend"></div>
+  </div>
+
+  <main>
+    <div class="row two">
+
+      <section class="card view-pc" data-view="pc">
+        <header>
+          <h2>Parallel Coordinates</h2>
+          <span class="ctrl-help">Filtra arrastrando un rango sobre cualquier eje</span>
+        </header>
+        <div id="pc"></div>
+      </section>
+
+      <section class="card view-radviz" data-view="radviz">
+        <header>
+          <h2>RadViz</h2>
+          <span class="ctrl-help">Pasa el mouse sobre una feature del borde</span>
+        </header>
+        <div id="radviz"></div>
+      </section>
+
+      <section class="card view-projection" data-view="projection">
+        <header>
+          <h2>PCA</h2>
+          <span class="ctrl-help">Click en una canción para fijarla</span>
+        </header>
+        <div id="projection"></div>
+      </section>
+
+      <section class="card view-star" data-view="star">
+        <header>
+          <h2>Star Coordinates</h2>
+          <span class="ctrl-help">Mueve los ejes o cambia su peso</span>
+        </header>
+        <div id="star"></div>
+      </section>
+
+    </div>
+
+    <div class="row three">
+      <section class="card">
+        <header>
+          <h2>Histograma</h2>
+          <span class="ctrl-help">Elige una feature</span>
+        </header>
+        <div id="histogram"></div>
+      </section>
+      <section class="card">
+        <header><h2>Correlación</h2></header>
+        <div id="correlation"></div>
+      </section>
+      <section class="card">
+        <header>
+          <h2>Scatter</h2>
+          <span class="ctrl-help">Elige X e Y</span>
+        </header>
+        <div id="scatter2d"></div>
+      </section>
+    </div>
+  </main>
+
+</div>
+
+<div id="tooltip" class="tooltip" style="display:none"></div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

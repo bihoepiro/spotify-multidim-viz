@@ -1,0 +1,12 @@
+# Datos crudos y procesados (no versionar)
+data/raw/spotify.csv
+data/processed/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Node
+node_modules/
